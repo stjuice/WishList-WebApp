@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using HotChocolate;
+using WishList.GraphApi;
 
 namespace WishList
 {
@@ -28,6 +30,9 @@ namespace WishList
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddGraphQLServer().AddQueryType<Query>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +60,8 @@ namespace WishList
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+
+                endpoints.MapGraphQL();
             });
 
             app.UseSpa(spa =>
