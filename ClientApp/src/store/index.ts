@@ -1,5 +1,11 @@
 import * as WeatherForecasts from './WeatherForecasts';
 import * as Counter from './Counter';
+import { applyMiddleware, createStore } from 'redux';
+import rootReducer from './rootReducer';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
+import queryBookEpic from '../behavior/book/epic';
+import { RootAction } from '../behavior/book/actions';
+import { RootState } from '../behavior/book/types';
 
 // The top-level state object
 export interface ApplicationState {

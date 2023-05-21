@@ -3,12 +3,15 @@ import thunk from 'redux-thunk';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { History } from 'history';
 import { ApplicationState, reducers } from './';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
+import queryBookEpic from '../behavior/book/epic';
+import { RootState } from '../behavior/book/types';
+import { RootAction } from '../behavior/book/actions';
 
 export default function configureStore(history: History, initialState?: ApplicationState) {
-    const middleware = [
-        thunk,
-        routerMiddleware(history)
-    ];
+    const epicMiddleware = createEpicMiddleware<RootAction, RootAction, RootState>();
+
+    const middleware = applyMiddleware(thunk, routerMiddleware(history), epicMiddleware);
 
     const rootReducer = combineReducers({
         ...reducers,
@@ -21,9 +24,11 @@ export default function configureStore(history: History, initialState?: Applicat
         enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
     }
 
-    return createStore(
-        rootReducer,
-        initialState,
-        compose(applyMiddleware(...middleware), ...enhancers)
-    );
+    const rootEpic = combineEpics(queryBookEpic);
+    const store = createStore(rootReducer, initialState, compose(middleware, ...enhancers));
+
+    epicMiddleware.run(rootEpic);
+
+    return store;
 }
+

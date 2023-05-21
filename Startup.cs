@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HotChocolate;
 using WishList.GraphApi;
+using HotChocolate.Types;
+using WishList.GraphApi.Types;
 
 namespace WishList
 {
@@ -31,8 +33,12 @@ namespace WishList
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddGraphQLServer().AddQueryType<Query>();
+            services.AddGraphQLServer().AddQueryType<Query>(); // v1
 
+            services.AddGraphQLServer()
+                .AddQueryType<Query>()
+                .AddType<BookType>()
+                .AddType<AuthorType>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
