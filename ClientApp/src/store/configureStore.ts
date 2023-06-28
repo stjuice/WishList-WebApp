@@ -13,9 +13,9 @@ export default function configureStore(history: History, initialState?: Applicat
 
     const middleware = applyMiddleware(thunk, routerMiddleware(history), epicMiddleware);
 
-    const rootReducer = combineReducers({
+    const rootReducer = combineReducers({ //TODO: move to rootReducer file
         ...reducers,
-        router: connectRouter(history)
+        router: connectRouter(history),
     });
 
     const enhancers = [];

@@ -33,7 +33,7 @@ namespace WishList
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddGraphQLServer().AddQueryType<Query>(); // v1
+            //services.AddGraphQLServer().AddQueryType<Query>(); // v1
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()

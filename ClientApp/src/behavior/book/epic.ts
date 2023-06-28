@@ -19,7 +19,7 @@ const queryBookEpic: CustomEpic<RootAction> = (action$, state$) => action$.pipe(
     executeGraphqlQuery(getBookQuery, {
       id: action.payload,
     }).pipe(
-      tap(console.log),
+      tap(a => console.log('a', a)),
       map((response: any) => response.data.book),
       map((book: Book) => queryBookSuccess(book)),
       catchError((error) => of(queryBookFailure(error)))
