@@ -18,16 +18,6 @@ public class Query
     public Book GetBook(string id)
     {
         var pathToBooks = configuration.GetValue<string>("DataPath:LocalBookListData");
-        /* Retrieve book by id */
-        //var books = new List<Book>
-        //{
-        //    new Book { Id = "1", Title = "Book 1", AuthorId = "1" },
-        //    new Book { Id = "2", Title = "Book 2", AuthorId = "2" },
-        //    new Book { Id = "3", Title = "Book 3", AuthorId = "1" }
-        //};
-
-        //return books.FirstOrDefault(book => book.Id == id);
-
         string json = File.ReadAllText(pathToBooks);
         List<Book> books = JsonConvert.DeserializeObject<List<Book>>(json);
 
