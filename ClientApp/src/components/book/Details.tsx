@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { queryBookRequest } from '../../behavior/book/actions';
+import { addBook, requestBookDetails } from '../../behavior/book/actions';
+import { BookInput } from '../../behavior/book/types';
 
 
 const BookDetails = () => {
@@ -8,9 +9,17 @@ const BookDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(queryBookRequest('1'));
+    dispatch(requestBookDetails('1'));
   }, []);
-  console.log('book', book);
+
+  const handleAddBook = () => {
+    const newBook: BookInput = {
+      title: 'New Book Title',
+      authorId: 'Author ID',
+    };
+
+    dispatch(addBook(newBook));
+  };
 
   return (
     <div>
@@ -29,6 +38,9 @@ const BookDetails = () => {
           <p>No books found</p>
         )
       ) : 'no books'}
+      <div>
+        <button type="button" onClick={handleAddBook}>Add New Book</button>
+      </div>
     </div>
   );
 };

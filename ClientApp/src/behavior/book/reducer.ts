@@ -1,4 +1,4 @@
-import { QUERY_BOOK_FAILURE, QUERY_BOOK_REQUEST, QUERY_BOOK_SUCCESS } from "./actions";
+import { REQUEST_BOOK_DETAILS_FAILURE, REQUEST_BOOK_DETAILS, REQUEST_BOOK_DETAILS_SUCCESS } from "./actions";
 import { BookState } from "./types";
 
 const initialState: BookState = {
@@ -9,21 +9,21 @@ const initialState: BookState = {
 
 export const bookReducer = (state = initialState, action: { type: string; payload?: any }) => {
   switch (action.type) {
-    case QUERY_BOOK_REQUEST:
+    case REQUEST_BOOK_DETAILS:
       return {
         ...state,
         loading: true,
         error: null,
         data: null,
       };
-    case QUERY_BOOK_SUCCESS:
+    case REQUEST_BOOK_DETAILS_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
         data: action.payload,
       };
-    case QUERY_BOOK_FAILURE:
+    case REQUEST_BOOK_DETAILS_FAILURE:
       return {
         ...state,
         loading: false,

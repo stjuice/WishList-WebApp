@@ -1,9 +1,9 @@
 import { ofType, Epic } from 'redux-observable';
-import { from, of, Observable } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { from, of, Observable, merge } from 'rxjs';
+import { catchError, map, pluck, switchMap, tap } from 'rxjs/operators';
 import { executeGraphqlQuery } from '../../graphClient';
-import { QUERY_BOOK_REQUEST, RootAction, queryBookFailure, queryBookSuccess } from './actions';
-import { getBookQuery } from './queries';
+import { ADD_BOOK, REQUEST_BOOK_DETAILS, RootAction, requestBookFailureDetails, requestBookSuccessDetails } from './actions';
+import { addBookMutation, getBookQuery } from './queries';
 import type { Book, RootState } from './types';
 import { Action } from 'redux';
 import type { StateObservable } from 'redux-observable';
@@ -13,19 +13,30 @@ export type CustomEpic<TAction extends Action> = (
   state$: StateObservable<RootState>
 ) => Observable<TAction>;
 
-const queryBookEpic: CustomEpic<RootAction> = (action$, state$) => action$.pipe(
-  ofType(QUERY_BOOK_REQUEST),
-  switchMap((action) =>
-    executeGraphqlQuery(getBookQuery, {
-      id: action.payload,
-    }).pipe(
-      tap(a => console.log('a', a)),
-      map((response: any) => response.data.book),
-      map((book: Book) => queryBookSuccess(book)),
-      catchError((error) => of(queryBookFailure(error)))
+const epic: CustomEpic<RootAction> = (action$, state$) => {
+  const book$ = action$.pipe(
+    ofType(REQUEST_BOOK_DETAILS),
+    switchMap((action) =>
+      executeGraphqlQuery(getBookQuery, {
+        id: action.payload,
+      }).pipe(
+        map((response: any) => response.data.book),
+        map((book: Book) => requestBookSuccessDetails(book)),
+        catchError((error) => of(requestBookFailureDetails(error)))
+      )
     )
+  );
+
+  const addBook$ = action$.pipe(
+    ofType(ADD_BOOK),
+    switchMap((action) => executeGraphqlQuery(addBookMutation, { input: action.payload }).pipe(
+      map((response: any) => response.data.addBook),
+      map((book: Book) => requestBookSuccessDetails(book)),
+      catchError((error) => of(requestBookFailureDetails(error)))
+    ))
   )
-);
 
+  return merge(book$, addBook$);
+}
 
-export default queryBookEpic;
+export default epic;

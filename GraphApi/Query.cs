@@ -4,25 +4,20 @@ using System.Linq;
 using WishList.Entities;
 using Newtonsoft.Json;
 using System.IO;
+using WishList.WebApp.GraphApi.Data;
 
 namespace WishList.GraphApi;
 public class Query
 {
-    private readonly IConfiguration configuration;
+    private readonly BookRepository bookRepository;
 
-    public Query(IConfiguration configuration)
+    public Query(BookRepository bookRepository)
     {
-        this.configuration = configuration;
+        this.bookRepository = bookRepository;
     }
 
-    public Book GetBook(string id)
-    {
-        var pathToBooks = configuration.GetValue<string>("DataPath:LocalBookListData");
-        string json = File.ReadAllText(pathToBooks);
-        List<Book> books = JsonConvert.DeserializeObject<List<Book>>(json);
-
-        return books.FirstOrDefault(book => book.Id == id);
-    }
+    public Book GetBook(string id) 
+        => bookRepository.GetBook(id);
 
     public Author GetAuthor(string id)
     {

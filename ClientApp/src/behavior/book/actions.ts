@@ -1,27 +1,33 @@
-import { Action } from 'redux';
-import { Book } from './types';
+import { Book, BookInput } from './types';
 
-export const QUERY_BOOK_REQUEST = 'QUERY_BOOK_REQUEST' as const;
-export const QUERY_BOOK_SUCCESS = 'QUERY_BOOK_SUCCESS' as const;
-export const QUERY_BOOK_FAILURE = 'QUERY_BOOK_FAILURE' as const;
 
-export const queryBookRequest = (id: string) => ({
-  type: QUERY_BOOK_REQUEST,
+export const REQUEST_BOOK_DETAILS = 'REQUEST_BOOK_DETAILS' as const;
+export const requestBookDetails = (id: string) => ({
+  type: REQUEST_BOOK_DETAILS,
   payload: id,
 });
 
-export const queryBookSuccess = (book: Book) => ({
-  type: QUERY_BOOK_SUCCESS,
+export const REQUEST_BOOK_DETAILS_SUCCESS = 'REQUEST_BOOK_DETAILS_SUCCESS' as const;
+export const requestBookSuccessDetails = (book: Book) => ({
+  type: REQUEST_BOOK_DETAILS_SUCCESS,
   payload: book,
 });
 
-export const queryBookFailure = (error: Error) => ({
-  type: QUERY_BOOK_FAILURE,
+export const REQUEST_BOOK_DETAILS_FAILURE = 'REQUEST_BOOK_DETAILS_FAILURE' as const;
+export const requestBookFailureDetails = (error: Error) => ({
+  type: REQUEST_BOOK_DETAILS_FAILURE,
   payload: error,
 });
 
+export const ADD_BOOK = 'ADD_BOOK' as const;
+export const addBook = (newBook: BookInput) => ({
+  type: ADD_BOOK,
+  payload: newBook,
+});
+
 export type RootAction = ReturnType<
-  | typeof queryBookRequest
-  | typeof queryBookSuccess
-  | typeof queryBookFailure
+  | typeof requestBookDetails
+  | typeof requestBookSuccessDetails
+  | typeof requestBookFailureDetails
+  | typeof addBook
   >;

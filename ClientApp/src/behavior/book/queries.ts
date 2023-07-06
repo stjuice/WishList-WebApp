@@ -7,3 +7,13 @@ export const getBookQuery = `
     }
   }
 `;
+
+export const addBookMutation = `
+  mutation AddBook($input: BookInput!) {
+    addBook(input: $input) {
+      id
+      title
+      authorId
+    }
+  }
+`

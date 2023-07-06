@@ -13,5 +13,20 @@
     "Id": "3",
     "Title": "Book 3",
     "AuthorId": "1"
+  },
+  {
+    "Id": "d2b8db67-98f9-4547-bf24-602faba00264",
+    "Title": "New Book Title",
+    "AuthorId": "Author ID"
+  },
+  {
+    "Id": "bb0b8b48-5d87-419d-b2f6-256181e25dbf",
+    "Title": "New Book Title",
+    "AuthorId": "Author ID"
+  },
+  {
+    "Id": "dc96fe31-6b74-46a9-ad18-0287acb2397f",
+    "Title": "New Book Title",
+    "AuthorId": "Author ID"
   }
 ]
