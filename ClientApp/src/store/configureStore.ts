@@ -2,19 +2,22 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { History } from 'history';
-import { ApplicationState, reducers } from './';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import queryBookEpic from '../behavior/book/epic';
-import { RootState } from '../behavior/book/types';
-import { RootAction } from '../behavior/book/actions';
+import queryWishListEpic from '../behavior/wishList/epic';
+import { AppState, RootAction } from '../behavior/types';
+import { State } from '.';
+import { bookReducer } from '../behavior/book/reducer';
+import { wishListReducer } from '../behavior/wishList/reducer';
 
-export default function configureStore(history: History, initialState?: ApplicationState) {
-    const epicMiddleware = createEpicMiddleware<RootAction, RootAction, RootState>();
+export default function configureStore(history: History, initialState?: State) {
+    const epicMiddleware = createEpicMiddleware<RootAction, RootAction, AppState>();
 
     const middleware = applyMiddleware(thunk, routerMiddleware(history), epicMiddleware);
 
-    const rootReducer = combineReducers({ //TODO: move to rootReducer file
-        ...reducers,
+    const rootReducer = combineReducers({ //TODO: make func like combine(history) move to rootReducer file
+        book: bookReducer,
+        wishList: wishListReducer,
         router: connectRouter(history),
     });
 
@@ -24,11 +27,11 @@ export default function configureStore(history: History, initialState?: Applicat
         enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
     }
 
-    const rootEpic = combineEpics(queryBookEpic);
-    const store = createStore(rootReducer, initialState, compose(middleware, ...enhancers));
+    const rootEpic = combineEpics(queryBookEpic, queryWishListEpic);
+
+    const store = createStore(rootReducer, {}, compose(middleware, ...enhancers));
 
     epicMiddleware.run(rootEpic);
 
     return store;
 }
-

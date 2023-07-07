@@ -1,14 +1,10 @@
-import { combineReducers, Reducer, CombinedState } from 'redux';
+import { combineReducers } from 'redux';
 import { bookReducer } from '../behavior/book/reducer';
-import { BookState } from '../behavior/book/types';
+import { wishListReducer } from '../behavior/wishList/reducer';
 
-// Define the root state type
-interface RootState {
-  book: BookState;
-}
-
-const rootReducer: Reducer<CombinedState<RootState>> = combineReducers<RootState>({
+const rootReducer = combineReducers({
   book: bookReducer,
+  wishList: wishListReducer,
 });
 
 export default rootReducer;

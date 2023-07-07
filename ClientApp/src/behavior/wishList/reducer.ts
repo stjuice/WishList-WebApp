@@ -1,29 +1,29 @@
-import { REQUEST_BOOK_DETAILS_FAILURE, REQUEST_BOOK_DETAILS, REQUEST_BOOK_DETAILS_SUCCESS, RootAction } from "./actions";
-import { BookState } from "./types";
+import { REQUEST_WISHLIST, REQUEST_WISHLIST_FAILURE, REQUEST_WISHLIST_SUCCESS } from "./actions";
+import { WishListState } from "./types";
 
-const initialState: BookState = {
+const initialState: WishListState = {
   loading: false,
   error: null,
   data: null,
 };
 
-export const bookReducer = (state = initialState, action: RootAction) => {
+export const wishListReducer = (state = initialState, action: { type: string; payload?: any }) => {
   switch (action.type) {
-    case REQUEST_BOOK_DETAILS:
+    case REQUEST_WISHLIST:
       return {
         ...state,
         loading: true,
         error: null,
         data: null,
       };
-    case REQUEST_BOOK_DETAILS_SUCCESS:
+    case REQUEST_WISHLIST_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
         data: action.payload,
       };
-    case REQUEST_BOOK_DETAILS_FAILURE:
+    case REQUEST_WISHLIST_FAILURE:
       return {
         ...state,
         loading: false,
