@@ -12,6 +12,9 @@ using HotChocolate.Types;
 using WishList.GraphApi.Types;
 using WishList.WebApp.GraphApi.Data;
 using WishList.WebApp.GraphApi;
+using WishList.WebApp.Services;
+using WishList.WebApp.Entities;
+using WishList.WebApp.Providers;
 
 namespace WishList
 {
@@ -37,6 +40,8 @@ namespace WishList
 
             //services.AddGraphQLServer().AddQueryType<Query>(); // v1
 
+            services.AddTransient<WishListService, WishListService>();
+            services.AddTransient<DataProvider<WishItem>, LocalDataProvider<WishItem>>();
             services.AddSingleton<BookRepository>();
 
             services.AddGraphQLServer()
