@@ -5,16 +5,24 @@ using WishList.Entities;
 using Newtonsoft.Json;
 using System.IO;
 using WishList.WebApp.GraphApi.Data;
+using WishList.WebApp.Entities;
+using WishList.WebApp.Services;
+using System.Threading.Tasks;
 
 namespace WishList.GraphApi;
 public class Query
 {
     private readonly BookRepository bookRepository;
+    private readonly WishListService wishListService;
 
-    public Query(BookRepository bookRepository)
+    public Query(BookRepository bookRepository, WishListService wishListService)
     {
         this.bookRepository = bookRepository;
+        this.wishListService = wishListService;
     }
+
+    public async Task<IEnumerable<WishItem>> GetWishList() 
+        => await wishListService.GetWishListAsync();
 
     public Book GetBook(string id) 
         => bookRepository.GetBook(id);
