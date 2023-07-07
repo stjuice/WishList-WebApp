@@ -10,7 +10,7 @@ namespace WishList.WebApp.Providers;
 public class LocalDataProvider<T> : JsonDataProvider<T>
 {
     private readonly IConfiguration configuration;
-    private readonly string pathToData = "DataPath";
+    private readonly string pathToData = "DataPath:LocalWishListData";
 
     public LocalDataProvider(IConfiguration configuration)
     {
@@ -24,13 +24,11 @@ public class LocalDataProvider<T> : JsonDataProvider<T>
 
     protected override Task<string> GetDataAsync()
     {
-        throw new NotImplementedException();
+        var path = GetPath();
+        var jsonData = File.ReadAllText(path);
+        return Task.FromResult(jsonData);
     }
 
-    private string GetPath()
-    {
-        var type = typeof(T).Name; 
-        var path = configuration.GetValue<string>($"{pathToData} : {type}");
-        return path;
-    }
+    private string GetPath() 
+        => configuration.GetValue<string>(pathToData);
 }

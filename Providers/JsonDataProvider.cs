@@ -1,13 +1,21 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using WishList.WebApp.Entities;
+using static HotChocolate.ErrorCodes;
 
 namespace WishList.WebApp.Providers;
 
 public abstract class JsonDataProvider<T> : DataProvider<T>
 {
-    public override Task<T[]> GetAllAsync()
+    public override async Task<IEnumerable<T>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var json = await GetDataAsync();
+        var dataList = JsonConvert.DeserializeObject<IEnumerable<T>>(json);
+
+        return dataList;
     }
 
     public override Task<T> GetAsync(Guid id)

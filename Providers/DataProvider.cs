@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WishList.WebApp.Providers;
 
 public abstract class DataProvider<T>
 {
-    public abstract Task<T[]> GetAllAsync();
+    public abstract Task<IEnumerable<T>> GetAllAsync();
     public abstract Task<T> GetAsync(Guid id);
     public abstract Task SaveAllAsync(T[] newEnity);
     public abstract Task SaveAsync(T entity);
