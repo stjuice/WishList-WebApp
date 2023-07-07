@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Threading.Tasks;
@@ -18,23 +19,17 @@ public class LocalDataProvider<T> : JsonDataProvider<T>
 
     protected override Task WriteToFileAsync(T[] list)
     {
-        var path = GetPath();
-        var convertedJson = JsonConvert.SerializeObject(list, Formatting.Indented);
-        File.WriteAllText(path, convertedJson);
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 
     protected override Task<string> GetDataAsync()
     {
-        var path = GetPath();
-        var jsonData = File.ReadAllText(path);
-        return Task.FromResult(jsonData);
+        throw new NotImplementedException();
     }
 
     private string GetPath()
     {
-
-        var type = typeof(T).Name;
+        var type = typeof(T).Name; 
         var path = configuration.GetValue<string>($"{pathToData} : {type}");
         return path;
     }
