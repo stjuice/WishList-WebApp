@@ -24,26 +24,3 @@ export type RootState = {
   isLoading: boolean;
   error: Error | null;
 };
-
-export type requestBookDetailsAction = {
-  type: typeof REQUEST_BOOK_DETAILS;
-  payload: string;
-};
-
-export type requestBookSuccessDetailsAction = {
-  type: typeof REQUEST_BOOK_DETAILS_SUCCESS;
-  payload: Book;
-};
-
-export type requestBookFailureDetailsAction = {
-  type: typeof REQUEST_BOOK_DETAILS_FAILURE;
-  payload: Error;
-};
-
-export type addBookAction = {
-  type: typeof ADD_BOOK;
-  payload: BookInput;
-};
-
-  // export type RootAction = requestBookDetailsAction | requestBookSuccessDetailsAction | requestBookFailureDetailsAction; //TODO: delete types
-

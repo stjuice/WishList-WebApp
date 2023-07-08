@@ -1,5 +1,5 @@
-import { BookState, } from '../behavior/book/types';
-import { WishListState } from '../behavior/wishList/types';
+import { BookState, } from 'behavior/book';
+import { WishListState } from 'behavior/wishList';
 
 type AppState = {
   book?: BookState | undefined;

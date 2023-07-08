@@ -1,15 +1,7 @@
-import { applyMiddleware, createStore } from 'redux';
-import rootReducer from './rootReducer';
-import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import queryBookEpic from '../behavior/book/epic';
-import { RootAction } from '../behavior/book/actions';
-import { BookState, RootState } from '../behavior/book/types';
-import { bookReducer } from '../behavior/book/reducer';
-import { AppState } from './state';
 import { RouterActionType } from 'connected-react-router';
-import { WishListState } from '../behavior/wishList/types';
+import { BookState } from 'behavior/book';
+import { WishListState } from 'behavior/wishList';
 
-// The top-level state object
 export type State = {
     book?: BookState | undefined;
     wishList?: WishListState | undefined;

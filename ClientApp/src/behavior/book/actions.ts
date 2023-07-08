@@ -25,7 +25,7 @@ export const addBook = (newBook: BookInput) => ({
   payload: newBook,
 });
 
-export type RootAction = ReturnType<
+export type BookAction = ReturnType<
   | typeof requestBookDetails
   | typeof requestBookSuccessDetails
   | typeof requestBookFailureDetails

@@ -1,7 +1,7 @@
-import type { RootState as BookRootState } from './book/types';
-import type { RootState as WishListRootState } from './wishList/types';
-import type { RootAction as BookAction } from './book/actions';
-import type { RootAction as WishListAction } from './wishList/actions';
+import type { BookRootState } from './book';
+import type { WishListRootState } from './wishList';
+import type { BookAction } from './book/actions';
+import type { WishListAction } from './wishList/actions';
 
 export type AppState = {
   book?: BookRootState | undefined;

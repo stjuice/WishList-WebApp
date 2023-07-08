@@ -1,4 +1,4 @@
-import { REQUEST_BOOK_DETAILS_FAILURE, REQUEST_BOOK_DETAILS, REQUEST_BOOK_DETAILS_SUCCESS, RootAction } from "./actions";
+import { REQUEST_BOOK_DETAILS_FAILURE, REQUEST_BOOK_DETAILS, REQUEST_BOOK_DETAILS_SUCCESS, BookAction } from "./actions";
 import { BookState } from "./types";
 
 const initialState: BookState = {
@@ -7,7 +7,7 @@ const initialState: BookState = {
   data: null,
 };
 
-export const bookReducer = (state = initialState, action: RootAction) => {
+export const bookReducer = (state = initialState, action: BookAction) => {
   switch (action.type) {
     case REQUEST_BOOK_DETAILS:
       return {

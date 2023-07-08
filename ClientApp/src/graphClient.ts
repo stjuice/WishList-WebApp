@@ -12,12 +12,10 @@ export const executeGraphqlQuery = (query: string, variables?: object) => {
     }),
   };
 
-  // Return an Observable by converting the Promise to Observable using `from`
   return from(
     fetch('/graphql', options)
       .then((response) => response.json())
       .then((data) => {
-        // Process and return the response data
         return data;
       })
   );

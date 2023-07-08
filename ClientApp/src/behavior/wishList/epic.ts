@@ -1,13 +1,13 @@
-import { ofType, Epic } from 'redux-observable';
-import { from, of, Observable, merge } from 'rxjs';
-import { catchError, map, pluck, switchMap, tap } from 'rxjs/operators';
+import { ofType } from 'redux-observable';
+import { of, Observable } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { executeGraphqlQuery } from '../../graphClient';
 import { REQUEST_WISHLIST, requestWishListFailureDetails, requestWishListSuccessDetails } from './actions';
 import { getWishListQuery } from './queries';
 import type { WishList } from './types';
 import { Action } from 'redux';
 import type { StateObservable } from 'redux-observable';
-import { AppState, RootAction } from '../types';
+import { AppState, RootAction } from 'behavior/types';
 
 export type CustomEpic<TAction extends Action> = (
   action$: Observable<TAction>,

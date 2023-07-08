@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestWishList } from '../../behavior/wishList/actions';
+import { requestWishList } from 'behavior/wishList/actions';
 
 
-const WishListDetails = () => {
+const WishList = () => {
   const wishList = useSelector((state) => state.wishList);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(requestWishList());
   }, []);
-
 
   return (
     <div>
@@ -39,4 +38,4 @@ const WishListDetails = () => {
   );
 };
 
-export default WishListDetails;
+export default WishList;
