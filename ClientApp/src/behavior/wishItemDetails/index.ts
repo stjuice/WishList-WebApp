@@ -7,4 +7,5 @@ export {
   requestWishItemDetails,
   requestWishItemDetailsSuccessDetails,
   requestWishItemDetailsFailureDetails,
+  addNewWishItem,
 } from './actions';

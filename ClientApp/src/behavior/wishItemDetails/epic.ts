@@ -41,8 +41,7 @@ const epic: CustomEpic<RootAction> = (action$, _, { history }) => {
 
   const addNewWishItem$ = action$.pipe(
     ofType(ADD_NEW_WISHITEM),
-    pluck('payload'), // fix
-    tap(console.log),
+    pluck('payload'),
     switchMap((input) => executeGraphqlQuery(addNewWishItemMutation, { input }).pipe(
       map((response: any) => response.data.addNewWishItem),
       map((wishItem: WishItem) => requestWishItemDetailsSuccessDetails(wishItem)),
