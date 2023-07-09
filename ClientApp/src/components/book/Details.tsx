@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addBook, requestBookDetails } from '../../behavior/book/actions';
-import { BookInput } from '../../behavior/book/types';
-
+import { BookInput } from 'src/behavior/book';
+import { addBook, requestBookDetails } from 'src/behavior/book/actions';
 
 const BookDetails = () => {
   const book = useSelector((state) => state.book);
