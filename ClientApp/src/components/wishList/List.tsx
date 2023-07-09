@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestWishItemDetails } from 'src/behavior/wishItemDetails/actions';
 import { requestWishList } from 'src/behavior/wishList/actions';
+import ViewButton from './ViewButton';
 
 const WishList = () => {
   const wishList = useSelector((state) => state.wishList);
@@ -39,17 +39,3 @@ const WishList = () => {
 };
 
 export default WishList;
-
-const ViewButton = ({ itemId }: { itemId: string }) => {
-  const dispatch = useDispatch();
-
-  const handleRequestWishItem = () => {
-    itemId && dispatch(requestWishItemDetails(itemId));
-  };
-
-  return (
-    <div>
-      <button type="button" onClick={handleRequestWishItem}>View</button>
-    </div>
-  );
-};
