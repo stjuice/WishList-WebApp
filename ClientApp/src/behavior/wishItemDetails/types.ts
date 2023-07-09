@@ -18,3 +18,10 @@ export type WishItemDetailsState = {
 }
 
 export type WishItemDetailsRootState = WishItemDetails;
+
+export type WishItemInput = {
+  title: string;
+  priceInfo: PriceInfo;
+  link: string;
+  additionalInfo?: string;
+}

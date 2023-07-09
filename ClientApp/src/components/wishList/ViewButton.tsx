@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { requestWishItemDetails } from "src/behavior/wishItemDetails";
 
-const ViewButton = ({ itemId, }: { itemId: string }) => {
+const ViewButton = ({ itemId }: { itemId: string }) => {
   const dispatch = useDispatch();
 
   const handleRequestWishItem = () => {

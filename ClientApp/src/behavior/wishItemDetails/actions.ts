@@ -1,4 +1,4 @@
-import { WishItemDetails } from "./types";
+import type { WishItemDetails, WishItemInput } from "./types";
 
 export const REQUEST_WISHITEM_DETAILS = 'REQUEST_WISHITEM_DETAILS' as const;
 export const requestWishItemDetails = (itemId: string) => ({
@@ -18,8 +18,15 @@ export const requestWishItemDetailsFailureDetails = (error: Error) => ({
   payload: error,
 });
 
+export const ADD_NEW_WISHITEM = 'ADD_NEW_WISHITEM' as const;
+export const addNewWishItem = (newWishItem: WishItemInput) => ({
+  type: ADD_NEW_WISHITEM,
+  payload: newWishItem,
+});
+
 export type WishItemDetailsAction = ReturnType<
   | typeof requestWishItemDetails
   | typeof requestWishItemDetailsSuccessDetails
   | typeof requestWishItemDetailsFailureDetails
+  | typeof addNewWishItem
   >;

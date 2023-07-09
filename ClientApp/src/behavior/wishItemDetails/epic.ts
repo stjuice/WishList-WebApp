@@ -3,14 +3,16 @@ import { empty, merge, of } from 'rxjs';
 import { catchError, map, pluck, switchMap, tap } from 'rxjs/operators';
 import { executeGraphqlQuery } from '../../graphClient';
 import {
+  ADD_NEW_WISHITEM,
   REQUEST_WISHITEM_DETAILS,
   REQUEST_WISHITEM_DETAILS_SUCCESS,
   requestWishItemDetailsFailureDetails,
   requestWishItemDetailsSuccessDetails,
 } from './actions';
-import { getWishItemDetailsQuery } from './queries';
+import { addNewWishItemMutation, getWishItemDetailsQuery } from './queries';
 import type { WishItemDetails } from './types';
 import type { CustomEpic, RootAction } from '../types';
+import { WishItem } from '../wishList';
 
 const epic: CustomEpic<RootAction> = (action$, _, { history }) => {
   const wishItemDetails$ = action$.pipe(
@@ -37,7 +39,18 @@ const epic: CustomEpic<RootAction> = (action$, _, { history }) => {
     }),
   );
 
-  return merge(wishItemDetails$, navigateToWishItem$);
+  const addNewWishItem$ = action$.pipe(
+    ofType(ADD_NEW_WISHITEM),
+    pluck('payload'), // fix
+    tap(console.log),
+    switchMap((input) => executeGraphqlQuery(addNewWishItemMutation, { input }).pipe(
+      map((response: any) => response.data.addNewWishItem),
+      map((wishItem: WishItem) => requestWishItemDetailsSuccessDetails(wishItem)),
+      catchError((error) => of(requestWishItemDetailsFailureDetails(error)))
+    ))
+  )
+
+  return merge(wishItemDetails$, navigateToWishItem$, addNewWishItem$);
 }
 
 export default epic;
