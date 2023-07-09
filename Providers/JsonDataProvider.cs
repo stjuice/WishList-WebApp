@@ -9,7 +9,9 @@ using static HotChocolate.ErrorCodes;
 
 namespace WishList.WebApp.Providers;
 
-public abstract class JsonDataProvider<T> : DataProvider<T>
+public abstract class JsonDataProvider<T, TId> : DataProvider<T, TId>
+    where T : IIdentifiable<TId>, new()
+
 {
     public override async Task<IEnumerable<T>> GetAllAsync()
     {
@@ -19,10 +21,10 @@ public abstract class JsonDataProvider<T> : DataProvider<T>
         return dataList;
     }
 
-    public override async Task<T> GetAsync(Guid itemId)
+    public override async Task<T> GetAsync(TId itemId)
     {
         var dataList = await GetAllAsync();
-        var item = dataList.FirstOrDefault(id=>id.Equals(id));
+        var item = dataList.FirstOrDefault(data => data.Id.Equals(itemId));
 
         return item;
     }
@@ -32,7 +34,7 @@ public abstract class JsonDataProvider<T> : DataProvider<T>
         throw new NotImplementedException();
     }
 
-    public override Task RemoveAsync(Guid id)
+    public override Task RemoveAsync(TId id)
     {
         throw new NotImplementedException();
     }
@@ -42,9 +44,14 @@ public abstract class JsonDataProvider<T> : DataProvider<T>
         throw new NotImplementedException();
     }
 
-    public override Task SaveAsync(T entity)
+    public override async Task SaveAsync(T entity)
     {
-        throw new NotImplementedException();
+        var list = new List<T>(await GetAllAsync())
+            {
+                entity
+            };
+
+        await WriteToFileAsync(list.ToArray());
     }
 
     public override Task UpdateAsync(T entity)

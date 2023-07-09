@@ -8,9 +8,9 @@ namespace WishList.WebApp.Services;
 
 public class WishListService
 {
-    private readonly DataProvider<WishItem> dataProvider;
+    private readonly DataProvider<WishItem, Guid> dataProvider;
 
-    public WishListService(DataProvider<WishItem> dataProvider)
+    public WishListService(DataProvider<WishItem, Guid> dataProvider)
     {
         this.dataProvider = dataProvider;
     }
@@ -20,4 +20,7 @@ public class WishListService
 
     internal async Task<WishItem> GetWishItemAsync(Guid id)
         => await dataProvider.GetAsync(id);
+
+    internal async Task AddNewWishItemAsync(WishItem item)
+        => await dataProvider.SaveAsync(item);
 }

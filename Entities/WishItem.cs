@@ -2,7 +2,7 @@
 
 namespace WishList.WebApp.Entities;
 
-public class WishItem
+public class WishItem : IIdentifiable<Guid>
 {
     public Guid Id { get; set; }
     public string Title { get; set; }

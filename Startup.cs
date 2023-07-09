@@ -15,6 +15,7 @@ using WishList.WebApp.GraphApi;
 using WishList.WebApp.Services;
 using WishList.WebApp.Entities;
 using WishList.WebApp.Providers;
+using System;
 
 namespace WishList
 {
@@ -41,7 +42,7 @@ namespace WishList
             //services.AddGraphQLServer().AddQueryType<Query>(); // v1
 
             services.AddTransient<WishListService, WishListService>();
-            services.AddTransient<DataProvider<WishItem>, LocalDataProvider<WishItem>>();
+            services.AddTransient<DataProvider<WishItem, Guid>, LocalDataProvider<WishItem, Guid>>();
             services.AddSingleton<BookRepository>();
 
             services.AddGraphQLServer()
