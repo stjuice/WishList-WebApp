@@ -1,4 +1,11 @@
 {
+  "postinstall": "node ./module-alias.js",
+  "ts-node": {
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  },
   "compilerOptions": {
     "target": "es5",
     "allowJs": true,
@@ -18,12 +25,16 @@
     ],
     "skipLibCheck": false,
     "baseUrl": ".",
-    "paths": {
-      "behavior/*": ["src/behavior/*"],
-      "components/*": ["src/components/*"],
-    },
+    // "paths": {
+    //   "behavior/*": [
+    //     "src/behavior/*"
+    //   ],
+    //   "components/*": [
+    //     "src/components/*"
+    //   ]
+    // }
   },
   "include": [
-    "src"
+    "./src"
   ]
 }

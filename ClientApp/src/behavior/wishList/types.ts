@@ -1,14 +1,10 @@
-export type PriceInfo = {
-  price: number;
-  currencyId: string;
-};
+import { PriceInfo } from "../wishItemDetails/types";
 
-export type WishItem = {
+export type WishItem = { // leave few fields
   id: string;
   title: string;
   priceInfo: PriceInfo;
   link: string;
-  additionalInfo?: string;
 };
 
 export type WishList = WishItem[];

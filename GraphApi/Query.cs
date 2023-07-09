@@ -8,6 +8,7 @@ using WishList.WebApp.GraphApi.Data;
 using WishList.WebApp.Entities;
 using WishList.WebApp.Services;
 using System.Threading.Tasks;
+using System;
 
 namespace WishList.GraphApi;
 public class Query
@@ -23,6 +24,9 @@ public class Query
 
     public async Task<IEnumerable<WishItem>> GetWishList() 
         => await wishListService.GetWishListAsync();
+
+    public async Task<WishItem> GetWishItem(string id)
+        => await wishListService.GetWishItemAsync(new Guid(id));
 
     public Book GetBook(string id) 
         => bookRepository.GetBook(id);

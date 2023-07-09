@@ -17,4 +17,7 @@ public class WishListService
 
     public async Task<IEnumerable<WishItem>> GetWishListAsync() 
         => await dataProvider.GetAllAsync();
+
+    internal async Task<WishItem> GetWishItemAsync(Guid id)
+        => await dataProvider.GetAsync(id);
 }

@@ -1,10 +1,12 @@
 import { RouterActionType } from 'connected-react-router';
-import { BookState } from 'behavior/book';
-import { WishListState } from 'behavior/wishList';
+import { BookState } from '../behavior/book';
+import { WishListState } from '../behavior/wishList';
+import { WishItemDetailsState } from '../behavior/wishItemDetails';
 
 export type State = {
     book?: BookState | undefined;
     wishList?: WishListState | undefined;
+    wishItemDetails?: WishItemDetailsState | undefined;
     router?: {
         location: {
             pathname: string;

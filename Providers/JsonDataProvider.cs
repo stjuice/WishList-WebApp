@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WishList.WebApp.Entities;
 using static HotChocolate.ErrorCodes;
@@ -18,9 +19,12 @@ public abstract class JsonDataProvider<T> : DataProvider<T>
         return dataList;
     }
 
-    public override Task<T> GetAsync(Guid id)
+    public override async Task<T> GetAsync(Guid itemId)
     {
-        throw new NotImplementedException();
+        var dataList = await GetAllAsync();
+        var item = dataList.FirstOrDefault(id=>id.Equals(id));
+
+        return item;
     }
 
     public override Task RemoveAllAsync()

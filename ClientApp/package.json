@@ -11,6 +11,7 @@
     "history": "4.10.1",
     "jquery": "^3.6.4",
     "merge": "2.1.1",
+    "module-alias": "^2.2.3",
     "popper.js": "^1.16.1",
     "react": "~16.14.0",
     "react-dom": "~16.14.0",
@@ -44,7 +45,8 @@
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src/**/*.ts ./src/**/*.tsx"
+    "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
+    "postinstall": "node ./module-alias.js"
   },
   "eslintConfig": {
     "extends": "react-app"
