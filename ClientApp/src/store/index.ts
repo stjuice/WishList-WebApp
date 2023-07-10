@@ -1,11 +1,8 @@
 import { RouterActionType } from 'connected-react-router';
-import { WishListState } from '../behavior/wishList';
-import { WishItemDetailsState } from '../behavior/wishItemDetails';
+import { AppState } from 'src/behavior/types';
 
-export type State = {
-    wishList?: WishListState | undefined;
-    wishItemDetails?: WishItemDetailsState | undefined;
-    router?: {
+export type State = AppState & {
+    router: {
         location: {
             pathname: string;
             search: string;
@@ -14,7 +11,7 @@ export type State = {
             key?: string | undefined;
         };
         action: RouterActionType;
-    } | undefined;
+    };
 }
 
 // This type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are

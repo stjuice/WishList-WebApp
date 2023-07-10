@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 import { History } from 'history';
 
 export type AppState = {
-  wishList?: WishListRootState | undefined;
-  wishItemDetails?: WishItemDetailsRootState | undefined;
+  wishList?: WishListRootState;
+  wishItemDetails?: WishItemDetailsRootState;
 }
 
 export type RootAction = WishListAction | WishItemDetailsAction;
