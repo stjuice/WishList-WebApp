@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /appsettings.Development.json
 /@data/wishList/wishList.json
+/@data/books/books.json
