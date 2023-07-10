@@ -1,5 +1,5 @@
-import { RouterActionType } from 'connected-react-router';
-import { AppState } from 'src/behavior/types';
+import type { RouterActionType } from 'connected-react-router';
+import type { AppState } from 'src/behavior/types';
 
 export type State = AppState & {
     router: {

@@ -2,6 +2,7 @@ export type {
   WishItemDetails,
   WishItemDetailsState,
   WishItemDetailsRootState,
+  WishItemInput,
 } from './types'
 export {
   requestWishItemDetails,

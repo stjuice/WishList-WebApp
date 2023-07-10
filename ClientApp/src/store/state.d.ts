@@ -1,5 +1,5 @@
-import { WishItemDetailsState } from '../behavior/wishItemDetails';
-import { WishListState } from '../behavior/wishList';
+import type { WishItemDetailsState } from '../behavior/wishItemDetails';
+import type { WishListState } from '../behavior/wishList';
 
 type AppRootState = {
   wishList?: WishListState | undefined;

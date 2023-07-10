@@ -1,7 +1,8 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import type { WishItemInput } from "src/behavior/wishItemDetails";
+import type { ChangeEvent, FormEvent} from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewWishItem } from "src/behavior/wishItemDetails";
-import type { WishItemInput } from "src/behavior/wishItemDetails/types";
 
 const NewWishItemForm = () => {
   const [formData, setFormData] = useState<WishItemInput>({

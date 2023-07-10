@@ -1,11 +1,11 @@
-import { History } from 'history';
+import type { History } from 'history';
+import type { AppState, RootAction } from '../behavior/types';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import queryWishListEpic from '../behavior/wishList/epic';
 import queryWishItemDetails from '../behavior/wishItemDetails/epic';
-import { AppState, RootAction } from '../behavior/types';
 import createRootReducer from './rootReducer';
 
 export default function configureStore(history: History) {

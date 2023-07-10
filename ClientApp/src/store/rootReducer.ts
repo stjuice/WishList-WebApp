@@ -1,4 +1,4 @@
-import { History } from 'history';
+import type { History } from 'history';
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import { wishListReducer } from '../behavior/wishList/reducer';
