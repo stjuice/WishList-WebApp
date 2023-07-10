@@ -1,8 +1,9 @@
+import style from './WishItem.module.scss'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { requestWishList } from 'src/behavior/wishList/actions';
-import ViewButton from './ViewButton';
-import NewWishItemForm from './NewWishItemForm';
+import WishItem from './WishItem';
+import AddNewWish from './AddNewWishButton';
 
 const WishList = () => {
   const wishList = useSelector((state) => state.wishList);
@@ -20,23 +21,23 @@ const WishList = () => {
           <p>Loading...</p>
         ) : wishList.error ? (
           <p>Error: {wishList.error}</p>
-        ) : wishList.data.length > 0 ? (
-          wishList.data.map((wishItem) => (
-            <div key={wishItem.id}>
-              <p>ID: {wishItem.id}</p>
-              <p>Title: {wishItem.title}</p>
-              <p>Price: {wishItem.priceInfo.price}</p>
-              <p>Currency ID: {wishItem.priceInfo.currencyId}</p>
-              <p>Link: {wishItem.link}</p>
-              <ViewButton itemId={wishItem.id} />
-            </div>
-          ))
-        ) : (
-          <p>No wishes found</p>
-        )
+        ) : wishList.data.length > 0 ?
+          <div className={style.gridContainer}>{(
+            wishList.data.map((wishItem) => (
+              <WishItem
+                id={wishItem.id}
+                title={wishItem.title}
+                priceInfo={wishItem.priceInfo}
+                link={wishItem.link}
+                key={wishItem.id}
+              />
+            ))
+          )}</div> : (
+            <p>No wishes found</p>
+          )
       ) : 'No wishes'}
       <div>
-        <NewWishItemForm />
+        <AddNewWish />
       </div>
     </div>
   );
