@@ -1,3 +1,4 @@
+import styles from './WishItem.module.scss';
 import { useHistory } from "react-router";
 
 const AddNewWishButton = () => {
@@ -8,7 +9,7 @@ const AddNewWishButton = () => {
   };
 
   return (
-    <div>
+    <div className={styles.addNewWishButton}>
       <button onClick={handleClick}>Add New Wish</button>
     </div>
   );

@@ -19,6 +19,8 @@
   grid-row-gap: 0px;
   }
 
+  /* form */
+
 .newWishForm {
   margin: 0 250px;
 }
@@ -50,6 +52,8 @@ input, textarea, select {
   box-sizing: border-box;
 }
 
+/* view button */
+
 .viewButton {
   margin-top: 35px;
 }
@@ -68,11 +72,44 @@ input, textarea, select {
 	text-decoration:none;
 	text-shadow:0px -1px 0px #c763bd;
 }
+
 .viewButton button:hover {
 	background:linear-gradient(to bottom, #d69ccf 5%, #ffffff 100%);
 	background-color:#d69ccf;
 }
+
 .viewButton button:active {
+	position:relative;
+	top:1px;
+}
+
+/* add new wish button */
+
+.addNewWishButton {
+  margin: 35px 10px;
+}
+
+.addNewWishButton button {
+	background-color:#ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#d69ccf;
+	font-family:Arial;
+	font-size:15px;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #d69ccf;
+  border: 0;
+
+  box-shadow: 0px 0px 7px 0px #D69CCF;
+}
+
+.addNewWishButton button:hover {
+	background:linear-gradient(to bottom, #fffaff 5%, #edc2ed 100%);
+	background-color:#fffaff;
+}
+
+.addNewWishButton button:active {
 	position:relative;
 	top:1px;
 }
