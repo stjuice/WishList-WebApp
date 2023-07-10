@@ -1,5 +1,6 @@
+import styles from './WishItem.module.scss'
 import type { WishItemInput } from "src/behavior/wishItemDetails";
-import type { ChangeEvent, FormEvent} from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewWishItem } from "src/behavior/wishItemDetails";
@@ -64,9 +65,9 @@ const NewWishItemForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.newWishForm}>
       <div>
-        <label>Title:</label>
+        <label htmlFor="title">Title:</label>
         <input
           type="text"
           name="title"
@@ -74,26 +75,27 @@ const NewWishItemForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label>Price:</label>
-        <input
-          type="number"
-          name='price'
-          value={formData.priceInfo.price}
-          onChange={handleChange}
-        />
+      <div className={`${styles.priceInfo}`}>
+        <div>
+          <label htmlFor="price">Price:</label>
+          <input
+            type="number"
+            name='price'
+            value={formData.priceInfo.price}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="currencyId">Currency ID:</label>
+          <select name="currencyId">
+            <option value="USD">USD</option>
+            <option value="UAH">UAH</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
       </div>
       <div>
-        <label>Currency ID:</label>
-        <input
-          type="text"
-          name='currencyId'
-          value={formData.priceInfo.currencyId}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Link:</label>
+        <label htmlFor="link">Link:</label>
         <input
           type="text"
           name='link'
@@ -102,7 +104,7 @@ const NewWishItemForm = () => {
         />
       </div>
       <div>
-        <label>Additional Info:</label>
+        <label htmlFor="additionalInfo">Additional Info:</label>
         <textarea
           name='additionalInfo'
           value={formData.additionalInfo}
@@ -110,7 +112,9 @@ const NewWishItemForm = () => {
         >
         </textarea>
       </div>
-      <button type="submit">Submit</button>
+      <div className={styles.submitButton}>
+        <button type="submit">Submit</button>
+      </div>
     </form>
   );
 };

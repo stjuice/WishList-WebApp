@@ -10,3 +10,42 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
 }
+
+.priceInfo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 0px;
+  }
+
+.newWishForm {
+  margin: 0 250px;
+}
+
+.submitButton {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.submitButton button {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+label {
+  display: block;
+  margin: 0;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 0 0 30px 0;
+  display: inline-block;
+  border: 1px solid #ff9fe7;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
