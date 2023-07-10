@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 
-const AddNewWish = () => {
+const AddNewWishButton = () => {
   const history = useHistory();
 
   const handleClick = () => {
@@ -14,4 +14,4 @@ const AddNewWish = () => {
   );
 }
 
-export default AddNewWish;
+export default AddNewWishButton;
