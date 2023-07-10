@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HotChocolate;
-using WishList.GraphApi;
-using HotChocolate.Types;
 using WishList.GraphApi.Types;
 using WishList.WebApp.GraphApi.Data;
 using WishList.WebApp.GraphApi;
@@ -16,6 +12,7 @@ using WishList.WebApp.Services;
 using WishList.WebApp.Entities;
 using WishList.WebApp.Providers;
 using System;
+using WishList.WebApp.GraphApi.Types;
 
 namespace WishList
 {
@@ -46,9 +43,11 @@ namespace WishList
             services.AddSingleton<BookRepository>();
 
             services.AddGraphQLServer()
-                .AddQueryType<Query>()
-                .AddMutationType<Mutation>()
+                .AddQueryType<QueryType>()
+                .AddMutationType<MutationType>()
                 .AddType<BookType>()
+                .AddType<WishItemType>()
+                .AddType<PriceInfoType>()
                 .AddType<AuthorType>();
         }
 
