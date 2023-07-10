@@ -1,4 +1,4 @@
-import styles from './WishItem.module.scss';
+import styles from './WishButton.module.scss';
 import { useDispatch } from "react-redux";
 import { requestWishItemDetails } from "src/behavior/wishItemDetails";
 
@@ -11,7 +11,7 @@ const ViewButton = ({ itemId }: { itemId: string }) => {
 
   return (
     <div className={styles.viewButton}>
-      <button type="button" onClick={handleRequestWishItem}>View</button>
+      <button type="button" onClick={handleRequestWishItem} className={styles.contrastButton}>View</button>
     </div>
   );
 };

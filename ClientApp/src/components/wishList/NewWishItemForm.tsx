@@ -1,4 +1,5 @@
 import styles from './WishItem.module.scss'
+import buttonStyles from './buttons/WishButton.module.scss'
 import type { WishItemInput } from "src/behavior/wishItemDetails";
 import type { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
@@ -112,8 +113,8 @@ const NewWishItemForm = () => {
         >
         </textarea>
       </div>
-      <div className={styles.submitButton}>
-        <button type="submit">Submit</button>
+      <div className={buttonStyles.submitButton}>
+        <button type="submit" className={buttonStyles.lightButton}>Submit</button>
       </div>
     </form>
   );
