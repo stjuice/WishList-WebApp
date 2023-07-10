@@ -2,8 +2,8 @@ import style from './WishItem.module.scss'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { requestWishList } from 'src/behavior/wishList/actions';
-import NewWishItemForm from './NewWishItemForm';
 import WishItem from './WishItem';
+import AddNewWish from './AddNewWish';
 
 const WishList = () => {
   const wishList = useSelector((state) => state.wishList);
@@ -37,7 +37,7 @@ const WishList = () => {
           )
       ) : 'No wishes'}
       <div>
-        <NewWishItemForm />
+        <AddNewWish />
       </div>
     </div>
   );
