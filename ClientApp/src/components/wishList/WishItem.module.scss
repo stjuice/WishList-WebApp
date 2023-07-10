@@ -1,8 +1,10 @@
+$wish-color: #D69CCF;
+
 .wishItem {
   margin: 10px;
   padding: 10px;
 
-  box-shadow: 0px 0px 7px 0px #D69CCF;
+  box-shadow: 0px 0px 7px 0px $wish-color;
 }
 
 .gridContainer {
@@ -19,23 +21,12 @@
   grid-row-gap: 0px;
   }
 
-  /* form */
+/* form */
 
 .newWishForm {
   margin: 0 250px;
 }
 
-.submitButton {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}
-
-.submitButton button {
-  grid-area: 1 / 2 / 2 / 3;
-}
 
 label {
   display: block;
@@ -47,7 +38,7 @@ input, textarea, select {
   padding: 12px 20px;
   margin: 0 0 30px 0;
   display: inline-block;
-  border: 1px solid #ff9fe7;
+  border: 1px solid $wish-color;
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -74,8 +65,8 @@ input, textarea, select {
 }
 
 .viewButton button:hover {
-	background:linear-gradient(to bottom, #d69ccf 5%, #ffffff 100%);
-	background-color:#d69ccf;
+	background:linear-gradient(to bottom, $wish-color 5%, #ffffff 100%);
+	background-color:$wish-color;
 }
 
 .viewButton button:active {
@@ -93,15 +84,15 @@ input, textarea, select {
 	background-color:#ffffff;
 	display:inline-block;
 	cursor:pointer;
-	color:#d69ccf;
+	color:$wish-color;
 	font-family:Arial;
 	font-size:15px;
 	padding:9px 23px;
 	text-decoration:none;
-	text-shadow:0px -1px 0px #d69ccf;
+	text-shadow:0px -1px 0px $wish-color;
   border: 0;
 
-  box-shadow: 0px 0px 7px 0px #D69CCF;
+  box-shadow: 0px 0px 7px 0px $wish-color;
 }
 
 .addNewWishButton button:hover {
@@ -110,6 +101,43 @@ input, textarea, select {
 }
 
 .addNewWishButton button:active {
+	position:relative;
+	top:1px;
+}
+
+/* add new wish button */
+
+.submitButton {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.submitButton button {
+  grid-area: 1 / 2 / 2 / 3;
+
+  background-color:#ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:$wish-color;
+	font-family:Arial;
+	font-size:15px;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px $wish-color;
+  border: 0;
+
+  box-shadow: 0px 0px 7px 0px $wish-color;
+}
+
+.submitButton button:hover {
+	background:linear-gradient(to bottom, #fffaff 5%, #edc2ed 100%);
+	background-color:#fffaff;
+}
+
+.submitButton button:active {
 	position:relative;
 	top:1px;
 }
