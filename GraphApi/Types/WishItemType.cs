@@ -1,6 +1,4 @@
 ﻿using HotChocolate.Types;
-using System;
-using WishList.Entities;
 using WishList.WebApp.Entities;
 
 namespace WishList.WebApp.GraphApi.Types;

@@ -5,8 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HotChocolate;
-using WishList.GraphApi.Types;
-using WishList.WebApp.GraphApi.Data;
 using WishList.WebApp.GraphApi;
 using WishList.WebApp.Services;
 using WishList.WebApp.Entities;
@@ -40,15 +38,12 @@ namespace WishList
 
             services.AddTransient<WishListService, WishListService>();
             services.AddTransient<DataProvider<WishItem, Guid>, LocalDataProvider<WishItem, Guid>>();
-            services.AddSingleton<BookRepository>();
 
             services.AddGraphQLServer()
                 .AddQueryType<QueryType>()
                 .AddMutationType<MutationType>()
-                .AddType<BookType>()
                 .AddType<WishItemType>()
-                .AddType<PriceInfoType>()
-                .AddType<AuthorType>();
+                .AddType<PriceInfoType>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,7 +3,6 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import queryBookEpic from '../behavior/book/epic';
 import queryWishListEpic from '../behavior/wishList/epic';
 import queryWishItemDetails from '../behavior/wishItemDetails/epic';
 import { AppState, RootAction } from '../behavior/types';
@@ -25,7 +24,7 @@ export default function configureStore(history: History) {
     enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
   }
 
-  const rootEpic = combineEpics(queryBookEpic, queryWishListEpic, queryWishItemDetails);
+  const rootEpic = combineEpics(queryWishListEpic, queryWishItemDetails);
 
   const store = createStore(rootReducer, {}, compose(middleware, ...enhancers));
 
