@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using HotChocolate;
+using WishList.WebApp.GraphApi;
+using WishList.WebApp.Services;
+using WishList.WebApp.Entities;
+using WishList.WebApp.Providers;
+using System;
+using WishList.WebApp.GraphApi.Types;
 
 namespace WishList
 {
@@ -28,6 +33,15 @@ namespace WishList
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddTransient<WishListService, WishListService>();
+            services.AddTransient<DataProvider<WishItem, Guid>, LocalDataProvider<WishItem, Guid>>();
+
+            services.AddGraphQLServer()
+                .AddQueryType<QueryType>()
+                .AddMutationType<MutationType>()
+                .AddType<WishItemType>()
+                .AddType<PriceInfoType>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +69,8 @@ namespace WishList
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+
+                endpoints.MapGraphQL();
             });
 
             app.UseSpa(spa =>
