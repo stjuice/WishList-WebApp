@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { requestWishList } from 'src/behavior/wishList/actions';
 import WishItem from './WishItem';
-import AddNewWish from './AddNewWishButton';
+import AddNewWish from './buttons/AddNewWishButton';
 
 const WishList = () => {
   const wishList = useSelector((state) => state.wishList);

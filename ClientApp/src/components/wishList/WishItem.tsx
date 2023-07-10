@@ -1,5 +1,5 @@
 import styles from './WishItem.module.scss';
-import ViewButton from "./ViewButton";
+import ViewButton from './buttons/ViewButton';
 
 type Props = {
   id: string;
