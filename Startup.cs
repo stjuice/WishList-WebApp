@@ -11,6 +11,7 @@ using WishList.WebApp.Entities;
 using WishList.WebApp.Providers;
 using System;
 using WishList.WebApp.GraphApi.Types;
+using WishList.WebApp.Settings.IdentityProvider;
 
 namespace WishList
 {
@@ -34,14 +35,21 @@ namespace WishList
                 configuration.RootPath = "ClientApp/build";
             });
 
+            services.AddTransient<IdentityProviderConfig, GoogleIdentityPlatform>();
+
             services.AddTransient<WishListService, WishListService>();
+            services.AddTransient<UserService, UserService>();
+
             services.AddTransient<DataProvider<WishItem, Guid>, LocalDataProvider<WishItem, Guid>>();
+            services.AddTransient<DataProvider<User, Guid>, LocalDataProvider<User, Guid>>();
 
             services.AddGraphQLServer()
                 .AddQueryType<QueryType>()
                 .AddMutationType<MutationType>()
                 .AddType<WishItemType>()
-                .AddType<PriceInfoType>();
+                .AddType<UserType>()
+                .AddType<IdentityProviderConfigurationsType>()
+                .AddType<PriceInfoType>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -15,5 +15,13 @@ public class QueryType : ObjectType<Query>
             .Type<WishItemType>()
             .Name("wishItem")
             .Argument("id", arg => arg.Type<NonNullType<StringType>>());
+
+        descriptor.Field(t => t.GetUserByEmail(default, default))
+            .Type<UserType>()
+            .Name("user");
+
+        descriptor.Field(t => t.GetIdentityProviderConfigurations(default))
+            .Type<IdentityProviderConfigurationsType>()
+            .Name("ssoSettings");
     }
 }
