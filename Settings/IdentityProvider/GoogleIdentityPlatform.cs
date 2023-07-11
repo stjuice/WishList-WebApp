@@ -1,7 +1,16 @@
-﻿namespace WishList.WebApp.Settings.IdentityProvider
+﻿using Microsoft.Extensions.Configuration;
+
+namespace WishList.WebApp.Settings.IdentityProvider
 {
     public class GoogleIdentityPlatform : IdentityProviderConfig
     {
-        public override string ClientId => "470660842727-22ejg8e0k7sjs4ulpj2iadshagaq983h.apps.googleusercontent.com";
+        private readonly IConfiguration configuration;
+
+        public GoogleIdentityPlatform(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+        public override string ClientId => configuration.GetValue<string>("IdentityProviderConfig:GoogleIdentityPlatform:clientId");
     }
 }
