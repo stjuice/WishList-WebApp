@@ -3,7 +3,6 @@ export type User = {
   id: string;
   name: string;
   email: string;
-  wishListsIds: string;
 };
 
 export type UserState = {

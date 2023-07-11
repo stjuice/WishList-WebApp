@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable';
 import { of, Observable } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { executeGraphqlQuery } from '../../graphClient';
 import { REQUEST_WISHLIST, requestWishListFailureDetails, requestWishListSuccessDetails } from './actions';
 import { getWishListQuery } from './queries';

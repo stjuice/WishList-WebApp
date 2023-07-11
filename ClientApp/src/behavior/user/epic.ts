@@ -1,8 +1,8 @@
 import { ofType } from 'redux-observable';
 import { of, Observable, merge } from 'rxjs';
-import { catchError, map, pluck, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, pluck, switchMap } from 'rxjs/operators';
 import { executeGraphqlQuery } from '../../graphClient';
-import { ADD_NEW_USER, REQUEST_USER, REQUEST_USER_SUCCESS, requestUser, requestUserFailureDetails, requestUserSuccessDetails } from './actions';
+import { ADD_NEW_USER, REQUEST_USER, requestUser, requestUserFailureDetails, requestUserSuccessDetails } from './actions';
 import { addNewUserMutation, getUserQuery } from './queries';
 import type { User } from './types';
 import { Action } from 'redux';
@@ -18,7 +18,6 @@ const epic: CustomEpic<RootAction> = (action$) => {
   const user$ = action$.pipe(
     ofType(REQUEST_USER),
     pluck('payload'),
-    tap(console.log),
     switchMap(email =>
       executeGraphqlQuery(getUserQuery, { email }).pipe(
         map((response: any) => response.data.user),
