@@ -12,6 +12,7 @@ using WishList.WebApp.Providers;
 using System;
 using WishList.WebApp.GraphApi.Types;
 using WishList.WebApp.Settings.IdentityProvider;
+using WishList.WebApp.Settings.DataAccess;
 
 namespace WishList
 {
@@ -36,6 +37,7 @@ namespace WishList
             });
 
             services.AddTransient<IdentityProviderConfig, GoogleIdentityPlatform>();
+            services.AddTransient<DataAccessSettings, LocalDataAccessSettings>();
 
             services.AddTransient<WishListService, WishListService>();
             services.AddTransient<UserService, UserService>();

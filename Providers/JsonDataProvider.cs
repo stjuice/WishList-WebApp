@@ -46,7 +46,8 @@ public abstract class JsonDataProvider<T, TId> : DataProvider<T, TId>
 
     public override async Task SaveAsync(T entity)
     {
-        var list = new List<T>(await GetAllAsync())
+        var allData = await GetAllAsync();
+        var list = new List<T>(allData)
             {
                 entity
             };

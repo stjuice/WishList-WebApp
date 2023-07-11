@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Threading.Tasks;
 using WishList.WebApp.Entities;
+using WishList.WebApp.Settings.DataAccess;
 
 namespace WishList.WebApp.Providers;
 
@@ -12,11 +13,12 @@ public class LocalDataProvider<T, TId> : JsonDataProvider<T, TId>
     where T : IIdentifiable<TId>, new()
 {
     private readonly IConfiguration configuration;
-    private readonly string pathToData = "DataPath:LocalWishListData";
+    private readonly DataAccessSettings _settings;
 
-    public LocalDataProvider(IConfiguration configuration)
+    public LocalDataProvider(IConfiguration configuration, DataAccessSettings settings)
     {
         this.configuration = configuration;
+        _settings = settings;
     }
 
     protected override Task WriteToFileAsync(T[] list)
@@ -34,6 +36,9 @@ public class LocalDataProvider<T, TId> : JsonDataProvider<T, TId>
         return Task.FromResult(jsonData);
     }
 
-    private string GetPath() 
-        => configuration.GetValue<string>(pathToData);
+    private string GetPath()
+    {
+        var pathToData = String.Concat(_settings.DataRootPath, typeof(T).Name);
+        return configuration.GetValue<string>(pathToData);
+    }
 }
