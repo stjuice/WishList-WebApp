@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace WishList.WebApp.Settings.DataAccess;
+﻿namespace WishList.WebApp.Settings.DataAccess;
 
 public class LocalDataAccessSettings : DataAccessSettings
 {
