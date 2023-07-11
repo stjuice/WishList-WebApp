@@ -18,9 +18,5 @@ public class UserType : ObjectType<User>
         descriptor.Field(t => t.Email)
             .Type<NonNullType<StringType>>()
             .Name("email");
-
-        descriptor.Field(t => t.WishListsIds)
-            .Type<ListType<UuidType>>() // in json array
-            .Name("WishListsIds");
     }
 }
