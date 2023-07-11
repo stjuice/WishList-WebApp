@@ -365,3 +365,5 @@ FodyWeavers.xsd
 /@data/wishList/wishList.json
 /@data/books/books.json
 /@data/user/users.json
+/@data/wishList/wishItem.json
+/@data/user/user.json
