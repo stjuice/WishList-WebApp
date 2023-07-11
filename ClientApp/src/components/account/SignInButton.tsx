@@ -2,10 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { addNewUser } from "src/behavior/user/actions";
 import { useEffect } from "react";
+import { setAuthToken } from "./helper";
 
 type CustomPayload = JwtPayload & {
   name: string;
   email: string;
+  credential: string;
 }
 
 const SignInButton = () => {
@@ -26,10 +28,18 @@ const SignInButton = () => {
     }
 
     dispatch(addNewUser(newUser));
+
+    console.log(response);
+    console.log(userObject);
+    // Store the authentication token in local storage
+    setAuthToken(response.credential);
   };
 
   useEffect(() => {
-    if (!ssoSettings?.data?.clientId)
+    // Check if there is an authentication token in local storage
+    const authToken = localStorage.getItem('authToken');
+
+    if (!ssoSettings?.data?.clientId || authToken)
       return;
 
     /* global google */
@@ -49,7 +59,11 @@ const SignInButton = () => {
     )
   }, []);
 
-  return <div id="google-signin-button" />;
+  return (
+    <>
+      <div id="google-signin-button" />
+    </>
+  );
 };
 
 export default SignInButton;
