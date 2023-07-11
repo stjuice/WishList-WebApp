@@ -23,4 +23,17 @@ public class Mutation
         await wishListService.AddNewWishItemAsync(wishItem);
         return await wishListService.GetWishItemAsync(wishItem.Id);
     }
+
+    public async Task<User> AddNewUser([Service] UserService userService, UserInput userInput)
+    {
+        var user = new User()
+        {
+            Id = Guid.NewGuid(),
+            Name = userInput.Name,
+            Email = userInput.Email
+        };
+
+        await userService.AddNewUserAsync(user);
+        return await userService.GetUserByEmailAsync(user.Email);
+    }
 }
