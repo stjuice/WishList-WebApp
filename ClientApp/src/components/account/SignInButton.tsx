@@ -32,6 +32,8 @@ const SignInButton = () => {
     if (!ssoSettings?.data?.clientId)
       return;
 
+    /* global google */
+    // @ts-ignore: Ignoring error because 'google' is a global variable created by an external script. 
     google.accounts.id.initialize({
       client_id: ssoSettingsData?.clientId,
       callback: handleCallbackResponse,
@@ -39,6 +41,8 @@ const SignInButton = () => {
 
     // google.accounts.id.prompt(); // TODO: not forget to implement
 
+    /* global google */
+    // @ts-ignore: Ignoring error because 'google' is a global variable created by an external script. 
     google.accounts.id.renderButton(
       document.getElementById("google-signin-button"),
       { theme: "outline", size: "large" }
