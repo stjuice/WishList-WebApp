@@ -24,7 +24,7 @@ export const addNewWishItem = (newWishItem: WishItemInput) => ({
   payload: newWishItem,
 });
 
-export type WishItemDetailsAction = ReturnType<
+export type WishItemDetailsActions = ReturnType<
   | typeof requestWishItemDetails
   | typeof requestWishItemDetailsSuccessDetails
   | typeof requestWishItemDetailsFailureDetails

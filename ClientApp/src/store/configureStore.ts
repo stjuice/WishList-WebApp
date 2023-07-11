@@ -6,6 +6,8 @@ import { routerMiddleware } from 'connected-react-router';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import queryWishListEpic from '../behavior/wishList/epic';
 import queryWishItemDetails from '../behavior/wishItemDetails/epic';
+import queryUser from '../behavior/user/epic';
+import querySsoSettings from '../behavior/singleSignOn/epic';
 import createRootReducer from './rootReducer';
 
 export default function configureStore(history: History) {
@@ -24,7 +26,7 @@ export default function configureStore(history: History) {
     enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
   }
 
-  const rootEpic = combineEpics(queryWishListEpic, queryWishItemDetails);
+  const rootEpic = combineEpics(queryWishListEpic, queryWishItemDetails, queryUser, querySsoSettings);
 
   const store = createStore(rootReducer, {}, compose(middleware, ...enhancers));
 

@@ -17,7 +17,7 @@ export const requestWishListFailureDetails = (error: Error) => ({
   payload: error,
 });
 
-export type WishListAction = ReturnType<
+export type WishListActions = ReturnType<
   | typeof requestWishList
   | typeof requestWishListSuccessDetails
   | typeof requestWishListFailureDetails

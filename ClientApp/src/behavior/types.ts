@@ -1,18 +1,23 @@
 import { StateObservable } from 'redux-observable';
 import { Action } from 'redux';
-import type { WishListAction } from './wishList/actions';
-import type { WishItemDetailsAction } from './wishItemDetails/actions';
+import { History } from 'history';
+import { Observable } from 'rxjs';
+import type { WishListActions } from './wishList/actions';
+import type { WishItemDetailsActions } from './wishItemDetails/actions';
 import type { WishListRootState } from './wishList';
 import type { WishItemDetailsRootState } from './wishItemDetails';
-import { Observable } from 'rxjs';
-import { History } from 'history';
+import type { UserRootState, UserActions } from './user';
+import type { SsoSettingsRootState } from './singleSignOn';
+import type { SsoSettingsActions } from './singleSignOn/actions';
 
 export type AppState = {
   wishList?: WishListRootState;
   wishItemDetails?: WishItemDetailsRootState;
+  user?: UserRootState;
+  ssoSettings?: SsoSettingsRootState;
 }
 
-export type RootAction = WishListAction | WishItemDetailsAction;
+export type RootAction = WishListActions | WishItemDetailsActions | UserActions | SsoSettingsActions;
 
 export type StoreDependencies = {
   history?: History
